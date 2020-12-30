@@ -30,7 +30,6 @@ const RaceBuildForm = () => {
 		}
 	}, [raceHandlerContext, currentRace]);
 
-	// Local Race Initial state values
 	const [race, setRace] = useState({
 		name: '',
 		distance: '',
@@ -48,10 +47,10 @@ const RaceBuildForm = () => {
 	const {
 		name,
 		distance,
+		date,
 		capacity,
 		entries,
 		location,
-		date,
 		info1,
 		info2,
 		info3,
@@ -69,12 +68,10 @@ const RaceBuildForm = () => {
 		if (currentRace === null) {
 			addRace(race);
 		} else {
-			race.date = new Date(race.date).toISOString();
 			updateRace(race);
 		}
 		clearAll();
 
-		// Reset to initial values
 		setRace({
 			name: '',
 			distance: '',
@@ -97,9 +94,7 @@ const RaceBuildForm = () => {
 	return (
 		<form onSubmit={onSubmit}>
 			<div className='form-group'>
-				<h2 className='text-primary'>
-					{currentRace ? 'Edit Race' : 'Add Race'}
-				</h2>
+				<h2>{currentRace ? 'Edit Race' : 'Add Race'}</h2>
 				<input
 					type='text'
 					placeholder='Name'

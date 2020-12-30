@@ -10,7 +10,7 @@ import {
 	GET_RACES,
 	RACE_ERROR,
 	CLEAR_ERRORS,
-	CONFIRM_RACE,
+	CONFRIM_RACE,
 	CLEAR_CONFIRMATION,
 } from '../typesLibrary';
 
@@ -82,7 +82,7 @@ export default (state, action) => {
 				...state,
 				error: null,
 			};
-		case CONFIRM_RACE:
+		case CONFRIM_RACE:
 			return {
 				...state,
 				raceIsConfirmed: false,

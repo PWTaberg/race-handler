@@ -14,7 +14,7 @@ import {
 	GET_RACES,
 	RACE_ERROR,
 	CLEAR_ERRORS,
-	CONFIRM_RACE,
+	CONFRIM_RACE,
 	CLEAR_CONFIRMATION,
 } from '../typesLibrary';
 
@@ -28,67 +28,40 @@ const RaceHandlerState = (props) => {
 		loading: true,
 		error: null,
 		raceIsConfirmed: false,
-		availableRacesSet: false,
 	};
 
 	const [state, dispatch] = useReducer(raceHandlerReducer, initialState);
 
 	const addRace = async (race) => {
-		let config;
-		if (localStorage.token) {
-			config = {
-				headers: {
-					Authorization: `Bearer ${localStorage.token}`,
-					'Content-Type': 'application/json',
-				},
-			};
-			try {
-				const res = await axios.post('/api/v1/race-list', race, config);
-				dispatch({
-					type: ADD_RACE,
-					payload: res.data.newRace,
-				});
-			} catch (err) {
-				dispatch({
-					type: RACE_ERROR,
-					payload: err.response.data.error,
-				});
-			}
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		};
+		try {
+			const res = await axios.post('/api/v1/race-list', race, config);
+			dispatch({
+				type: ADD_RACE,
+				payload: res.data.newRace,
+			});
+		} catch (err) {
+			dispatch({ type: RACE_ERROR, payload: err.response.data.error });
 		}
 	};
-	const deleteRace = async (_id) => {
-		let config;
-		if (localStorage.token) {
-			config = {
-				headers: {
-					Authorization: `Bearer ${localStorage.token}`,
-				},
-			};
 
-			try {
-				await axios.delete(`/api/v1/race-list/${_id}`, config);
-				dispatch({
-					type: DELETE_RACE,
-					payload: _id,
-				});
-			} catch (err) {
-				dispatch({
-					type: RACE_ERROR,
-					payload: err.response.data.error,
-				});
-			}
+	const deleteRace = async (_id) => {
+		try {
+			await axios.delete(`/api/v1/race-list/${_id}`);
+			dispatch({
+				type: DELETE_RACE,
+				payload: _id,
+			});
+		} catch (err) {
+			dispatch({ type: RACE_ERROR, payload: err.response.data.error });
 		}
 	};
 
 	const setCurrentRace = (race) => {
-		// Modify format from ISO to local time
-
-		const localDate = new Date(race.date).toLocaleDateString();
-		const localTime = new Date(race.date).toLocaleTimeString().slice(0, 5);
-		const localDateTime = `${localDate}T${localTime}`;
-
-		race.date = localDateTime;
-
 		dispatch({ type: SET_CURRENT_RACE, payload: race });
 	};
 
@@ -97,31 +70,23 @@ const RaceHandlerState = (props) => {
 	};
 
 	const updateRace = async (race) => {
-		let config;
-		if (localStorage.token) {
-			config = {
-				headers: {
-					Authorization: `Bearer ${localStorage.token}`,
-					'Content-Type': 'application/json',
-				},
-			};
-
-			try {
-				const res = await axios.put(
-					`/api/v1/race-list/${race._id}`,
-					race,
-					config
-				);
-				dispatch({
-					type: UPDATE_RACE,
-					payload: res.data.updatedRace,
-				});
-			} catch (err) {
-				dispatch({
-					type: RACE_ERROR,
-					payload: err.response.data.error,
-				});
-			}
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		};
+		try {
+			const res = await axios.put(
+				`/api/v1/race-list/${race._id}`,
+				race,
+				config
+			);
+			dispatch({
+				type: UPDATE_RACE,
+				payload: res.data.updatedRace,
+			});
+		} catch (err) {
+			dispatch({ type: RACE_ERROR, payload: err.response.data.error });
 		}
 	};
 
@@ -149,20 +114,16 @@ const RaceHandlerState = (props) => {
 				payload: res.data.raceList,
 			});
 		} catch (err) {
-			dispatch({ type: RACE_ERROR, payload: err.response.data.error });
+			dispatch({ type: RACE_ERROR, paylod: err.response.data.eror });
 		}
 	};
 
-	// Clear Errors
 	const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
 
-	//
-	const setRaceConfirmed = () => dispatch({ type: CONFIRM_RACE });
+	const setRaceConfirmed = () => dispatch({ type: CONFRIM_RACE });
 
-	// Clear Confirmation
 	const clearConfirmation = () => dispatch({ type: CLEAR_CONFIRMATION });
 
-	// Handle payment
 	const handlePayment = async (token, product, runner, raceId) => {
 		const body = {
 			token,
@@ -170,35 +131,16 @@ const RaceHandlerState = (props) => {
 			runner,
 			raceId,
 		};
-		/*
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-    */
-		let config;
-		if (localStorage.token) {
-			config = {
-				headers: {
-					Authorization: `Bearer ${localStorage.token}`,
-					'Content-Type': 'application/json',
-				},
-			};
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		};
 
-			try {
-				await axios.post('/api/v1/race-list/payment', body, config);
-
-				// Update Race with runner
-
-				//setAlert(`You are now registerd for ${name}`, 'success');
-				//history.push('/');
-			} catch (err) {
-				dispatch({
-					type: RACE_ERROR,
-					payload: err.response.data.error,
-				});
-			}
+		try {
+			await axios.post('/api/v1/race-list/payment', body, config);
+		} catch (err) {
+			dispatch({ type: RACE_ERROR, payload: err.response.data.error });
 		}
 	};
 
@@ -213,7 +155,6 @@ const RaceHandlerState = (props) => {
 				loading: state.loading,
 				error: state.error,
 				raceIsConfirmed: state.raceIsConfirmed,
-				availableRacesSet: state.availableRacesSet,
 				getFeaturedRace,
 				setSelectedRace,
 				clearSelectedRace,

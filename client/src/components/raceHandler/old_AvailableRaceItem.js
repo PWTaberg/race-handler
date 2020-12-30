@@ -5,16 +5,7 @@ import RaceHandlerContext from '../../context/raceHandler/raceHandlerContext';
 const AvailableRaceItem = ({ race }) => {
 	const raceHandlerContext = useContext(RaceHandlerContext);
 	const { setSelectedRace } = raceHandlerContext;
-
-	// convert time from ISO to local
-	const localDate = new Date(race.date).toLocaleDateString();
-	const localTime = new Date(race.date).toLocaleTimeString().slice(0, 5);
-	const localDateTime = `${localDate} ${localTime}`;
-
-	const date = localDateTime;
-
-	const { name, price, capacity, entries, location } = race;
-
+	const { name, date, price, capacity, entries, location } = race;
 	const onClick = () => {
 		setSelectedRace(race);
 	};

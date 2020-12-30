@@ -47,7 +47,6 @@ const RaceSchema = new Schema({
 	},
 });
 
-// Cascade delete raceEntries when a race is deleted
 RaceSchema.pre('remove', async function (next) {
 	await this.model('RaceEntry').deleteMany({ race: this._id });
 	next();

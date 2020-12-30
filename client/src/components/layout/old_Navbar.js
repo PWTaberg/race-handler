@@ -6,7 +6,7 @@ import AuthContext from '../../context/auth/authContext';
 
 const Navbar = ({ title }) => {
 	const authContext = useContext(AuthContext);
-	const { isAuthenticated, logut, user } = authContext;
+	const { isAuthenticated, logut } = authContext;
 	const sidebarContext = useContext(SidebarContext);
 	const { openSidebar, closeSidebar, sidebarClassName } = sidebarContext;
 	const onClick = () => {
@@ -24,12 +24,12 @@ const Navbar = ({ title }) => {
 	const adminLinks = (
 		<Fragment>
 			<li>
-				<Link to='/admin-shop-preparation' style={{ color: 'black' }}>
+				<Link to='/admin-shop-preperation' style={{ color: 'black' }}>
 					ShopAdmin
 				</Link>
 			</li>
 			<li>
-				<Link to='/admin-race-preparation' style={{ color: 'black' }}>
+				<Link to='/admin-race-preperation' style={{ color: 'black' }}>
 					RaceAdmin
 				</Link>
 			</li>
@@ -97,16 +97,10 @@ const Navbar = ({ title }) => {
 		</Fragment>
 	);
 
-	let isAdmin = false;
-	if (user != null && user.role === 'admin') {
-		isAdmin = true;
-	}
-
 	return (
 		<div className='navbar'>
 			<h1>{title}</h1>
-			<ul>{isAuthenticated && isAdmin && adminLinks}</ul>
-			{'  '}
+			<ul>{isAuthenticated && adminLinks}</ul>{' '}
 			<ul>{isAuthenticated ? authLinks : guestLinks}</ul>
 		</div>
 	);

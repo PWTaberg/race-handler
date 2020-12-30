@@ -6,20 +6,13 @@ const AvailableRaceForAdminItem = ({ race }) => {
 	const raceHandlerContext = useContext(RaceHandlerContext);
 	const { deleteRace, setCurrentRace, clearCurrentRace } = raceHandlerContext;
 
-	// convert time from ISO to local
-
-	const localDate = new Date(race.date).toLocaleDateString();
-	const localTime = new Date(race.date).toLocaleTimeString().slice(0, 5);
-	const localDateTime = `${localDate} ${localTime}`;
-
-	const date = localDateTime;
-
 	const {
 		_id,
 		name,
+		date,
+		location,
 		capacity,
 		entries,
-		location,
 		price,
 		info1,
 		info2,
@@ -59,7 +52,7 @@ const AvailableRaceForAdminItem = ({ race }) => {
 			</h3>
 			<ul>
 				<li>Location: {location}</li>
-				<li>Date and Time: {date}</li>
+				<li>Date and Time: {date} </li>
 				<li>Entry fee: {price} kr</li>
 				<li>{info1}</li>
 				<li>{info2}</li>

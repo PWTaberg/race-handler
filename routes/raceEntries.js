@@ -1,8 +1,13 @@
 const express = require('express');
-const { getRaceEntries } = require('../controllers/raceEntries');
+const { getRaceEntries, addRaceEntry } = require('../controllers/raceEntries');
 
+// Obs merge params
 const router = express.Router({ mergeParams: true });
 
-router.route('/').get(getRaceEntries);
+//const Race = require('../models/Race');
+// skip the post method
+router.route('/').get(getRaceEntries).post(addRaceEntry);
+
+//router.route('/:id').post(addRaceEntry);
 
 module.exports = router;
