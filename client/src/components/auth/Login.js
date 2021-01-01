@@ -76,7 +76,7 @@ const Login = (props) => {
 				</div>
 				<p style={{ color: 'white' }}>
 					If you don't have an account,
-					<Link to='/register'>
+					<Link to='/register' style={linkStyle}>
 						<b> Register Here</b>
 					</Link>
 				</p>
@@ -88,6 +88,12 @@ const Login = (props) => {
 			</form>
 		</div>
 	);
+};
+
+const linkStyle = {
+	color: 'blue',
+	backgroundColor: 'rgba(255, 255, 255, 0.7)',
+	borderRadius: '4px',
 };
 
 export default Login;

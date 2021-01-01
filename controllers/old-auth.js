@@ -11,20 +11,14 @@ exports.register = asyncHandler(async (req, res, next) => {
 	console.log('register', req.body);
 
 	// FIX - remove role
-	//const { name, email, password, role } = req.body;
-	const { name, email, password } = req.body;
+	const { name, email, password, role } = req.body;
 	// Create user
 	// FIX - remove role
-	/*const user = await User.create({
-		name,
-		email,
-		password,
-		role,
-	}); */
 	const user = await User.create({
 		name,
 		email,
 		password,
+		role,
 	});
 
 	// Send token in cookie

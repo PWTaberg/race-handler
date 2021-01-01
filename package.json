@@ -1,38 +1,42 @@
 {
-    "name": "run-store-project",
-    "version": "1.0.0",
-    "description": "",
-    "main": "server.js",
-    "scripts": {
-        "start": "node server.js",
-        "server": "nodemon server.js",
-        "client": "npm start --prefix client",
-        "clientinstall": "npm start --prefix client",
-        "dev": "concurrently \"npm run server\" \"npm run client\"",
-        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/AntonWelliver/run-store-project.git"
-    },
-    "author": "Anton",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/AntonWelliver/run-store-project/issues"
-    },
-    "homepage": "https://github.com/AntonWelliver/run-store-project#readme",
-    "dependencies": {
-        "bcryptjs": "^2.4.3",
-        "cookie-parser": "^1.4.4",
-        "dotenv": "^8.2.0",
-        "express": "^4.17.1",
-        "jsonwebtoken": "^8.5.1",
-        "mongoose": "^5.8.9",
-        "morgan": "^1.9.1",
-        "stripe": "^8.52.0",
-        "uuid": "^8.0.0"
-    },
-    "devDependencies": {
-        "concurrently": "^5.1.0"
-    }
+	"name": "run-store-project",
+	"version": "1.0.0",
+	"description": "",
+	"main": "server.js",
+	"scripts": {
+		"start": "node server.js",
+		"server": "nodemon server.js",
+		"client": "npm start --prefix client",
+		"clientinstall": "npm start --prefix client",
+		"dev": "concurrently \"npm run server\" \"npm run client\"",
+		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+		"data:import-users": "node seedUser",
+		"data:destroy-users": "node seedUser -d",
+		"data:import-race": "node seedRace",
+		"data:destroy-race": "node seedRace -d"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/AntonWelliver/run-store-project.git"
+	},
+	"author": "Anton",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/AntonWelliver/run-store-project/issues"
+	},
+	"homepage": "https://github.com/AntonWelliver/run-store-project#readme",
+	"dependencies": {
+		"bcryptjs": "^2.4.3",
+		"cookie-parser": "^1.4.4",
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"jsonwebtoken": "^8.5.1",
+		"mongoose": "^5.8.9",
+		"morgan": "^1.9.1",
+		"stripe": "^8.52.0",
+		"uuid": "^8.0.0"
+	},
+	"devDependencies": {
+		"concurrently": "^5.1.0"
+	}
 }

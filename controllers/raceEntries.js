@@ -10,7 +10,7 @@ const Race = require('../models/Race');
 // @route GET /api/v1/user/:userId/race-entries
 // @access Public
 exports.getRaceEntries = asyncHandler(async (req, res, next) => {
-	console.log('getRaceEntries');
+	console.log('getRaceEntries', req.query);
 	let query = null;
 	let fields = null;
 	let sortBy = null;

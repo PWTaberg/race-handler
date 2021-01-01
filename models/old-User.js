@@ -18,17 +18,11 @@ const UserSchema = new mongoose.Schema({
 		],
 	},
 	// FIX - replace role
-	isAdmin: {
-		type: Boolean,
-		required: true,
-		default: false,
-	},
-	// REMOVE -
-	/*role: {
+	role: {
 		type: String,
 		enum: ['user'],
 		default: 'user',
-	},*/
+	},
 	password: {
 		type: String,
 		required: [true, 'Add a password'],
