@@ -98,7 +98,6 @@ const Navbar = ({ title }) => {
 	);
 
 	// FIX - role -> isAdmin
-	console.log('Navbar.user', user);
 	let isAdmin = false;
 	/* if (user != null && user.role === 'admin') {
 		isAdmin = true;

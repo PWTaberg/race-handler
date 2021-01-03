@@ -41,8 +41,7 @@ exports.protect = asyncHandler(async (req, res, next) => {
 	}
 });
 
-// Grant access to specific roles
-
+// NOT USED anymore - Grant access to specific roles
 exports.authorize = (...roles) => {
 	return (req, res, next) => {
 		if (!roles.includes(req.user.role)) {
@@ -57,7 +56,6 @@ exports.authorize = (...roles) => {
 	};
 };
 
-// FIX - add admin from local-shop
 exports.admin = (req, res, next) => {
 	if (req.user && req.user.isAdmin) {
 		next();

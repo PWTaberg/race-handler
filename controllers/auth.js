@@ -10,17 +10,8 @@ const User = require('../models/User');
 exports.register = asyncHandler(async (req, res, next) => {
 	console.log('register', req.body);
 
-	// FIX - remove role
-	//const { name, email, password, role } = req.body;
 	const { name, email, password } = req.body;
-	// Create user
-	// FIX - remove role
-	/*const user = await User.create({
-		name,
-		email,
-		password,
-		role,
-	}); */
+
 	const user = await User.create({
 		name,
 		email,
@@ -68,7 +59,6 @@ exports.login = asyncHandler(async (req, res, next) => {
 exports.getUser = asyncHandler(async (req, res, next) => {
 	const user = await User.findById(req.user.id);
 
-	// NO FIX - role/isAdmin included in user
 	res.status(200).json({
 		success: true,
 		user,

@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useContext } from 'react';
+import React, { Fragment, useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import RaceHandlerContext from '../../context/raceHandler/raceHandlerContext';
 
@@ -6,6 +6,7 @@ import AuthContext from '../../context/auth/authContext';
 import AlertContext from '../../context/alert/alertContext';
 
 import StripeCheckout from 'react-stripe-checkout';
+import axios from 'axios';
 
 const ConfirmRace = () => {
 	const raceHandlerContext = useContext(RaceHandlerContext);
@@ -13,9 +14,25 @@ const ConfirmRace = () => {
 	const alertContext = useContext(AlertContext);
 	const history = useHistory();
 
+	const [stripePublicKey, setStripePublicKey] = useState('');
 	// stripe
 	//Antons key const Stripe_public = 'pk_test_7BSkiYCY4f3PLHOBdDybsy5t00qSd6Ck5m';
-	const Stripe_public = 'pk_test_IkaBs3zE3qH12IO1ENSNkX7q00kgLs1P7x';
+	//let Stripe_public = 'pk_test_IkaBs3zE3qH12IO1ENSNkX7q00kgLs1P7x';
+
+	useEffect(() => {
+		if (stripePublicKey === '') {
+			const getStripeKey = async () => {
+				try {
+					const result = await axios.get('/api/v1/config/stripe');
+					setStripePublicKey(result.data);
+				} catch (err) {
+					console.err('Error fetching Stripe Key');
+				}
+			};
+
+			getStripeKey();
+		}
+	}, [stripePublicKey]);
 
 	const {
 		selectedRace,
@@ -94,7 +111,8 @@ const ConfirmRace = () => {
 		paymentComponent = (
 			<Fragment>
 				<StripeCheckout
-					stripeKey={Stripe_public}
+					//stripeKey={Stripe_public}
+					stripeKey={stripePublicKey}
 					token={makePayment}
 					name='Run For Joy'
 					amount={product.price * 100}

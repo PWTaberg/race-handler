@@ -53,4 +53,6 @@ RaceSchema.pre('remove', async function (next) {
 	next();
 });
 
-module.exports = mongoose.model('races', RaceSchema);
+// FIX-races
+//module.exports = mongoose.model('races', RaceSchema);
+module.exports = mongoose.model('Race', RaceSchema);
