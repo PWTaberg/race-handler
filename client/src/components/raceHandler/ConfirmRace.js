@@ -14,7 +14,8 @@ const ConfirmRace = () => {
 	const history = useHistory();
 
 	// stripe
-	const Stripe_public = 'pk_test_7BSkiYCY4f3PLHOBdDybsy5t00qSd6Ck5m';
+	//Antons key const Stripe_public = 'pk_test_7BSkiYCY4f3PLHOBdDybsy5t00qSd6Ck5m';
+	const Stripe_public = 'pk_test_IkaBs3zE3qH12IO1ENSNkX7q00kgLs1P7x';
 
 	const {
 		selectedRace,

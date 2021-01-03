@@ -127,10 +127,13 @@ exports.getPayment = asyncHandler(async (req, res, next) => {
 	// Update RaceEntry table in Mongo
 	const raceEntry = await RaceEntry.create(raceEntryInfo);
 
+	// Get  updated number of entries in race
+	const entries = await RaceEntry.countDocuments({ race: raceId });
+
 	// Update #entries in actual Race
 	const updatedRace = await Race.findByIdAndUpdate(
 		raceId,
-		{ entries: race.entries + 1 },
+		{ entries: entries },
 		{
 			new: true,
 			runValidators: true,
