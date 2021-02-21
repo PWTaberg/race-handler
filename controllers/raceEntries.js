@@ -65,9 +65,15 @@ exports.getRaceEntries = asyncHandler(async (req, res, next) => {
 	const limit = parseInt(req.query.limit, 10) || 25;
 	const startIndex = (page - 1) * limit;
 	const endIndex = page * limit;
-	const total = await RaceEntry.countDocuments();
 
-	//console.log('RaceEntry.total', total);
+	let total = 0;
+	if (req.params.raceId) {
+		// If race-entries per race
+		total = await RaceEntry.countDocuments({ race: req.params.raceId });
+	} else {
+		// If total race-entries
+		total = await RaceEntry.countDocuments();
+	}
 
 	// Populate
 	if (req.query.populate) {
