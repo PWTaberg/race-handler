@@ -8,7 +8,9 @@ const AvailableRaces = () => {
 	const { availableRaces, getRaces, loading } = raceHandlerContext;
 
 	useEffect(() => {
-		getRaces();
+		const query =
+			'sort=-date&page=1&limit=20&raceStatus=open&simulated=false';
+		getRaces(query);
 		// eslint-disable-next-line
 	}, []);
 

@@ -140,9 +140,16 @@ const RaceHandlerState = (props) => {
 		dispatch({ type: CLEAR_SELECTED_RACE });
 	};
 
-	const getRaces = async () => {
+	const getRaces = async (query="sort=date&page=1&limit=20") => {
 		try {
-			const res = await axios.get('/api/v1/race-list');
+			const res = await axios.get(`/api/v1/race-list?${query}`);
+
+			/*
+			const res = await axios.get(
+				'/api/v1/race-list?select=name, date&sort=date,name&page=1&limit=3'
+			);
+
+			*/
 
 			dispatch({
 				type: GET_RACES,
