@@ -5,6 +5,8 @@ const {
 	addRaceEntry,
 } = require('../controllers/raceEntries');
 
+const { protect, admin } = require('../middleware/auth');
+
 // Obs merge params
 const router = express.Router({ mergeParams: true });
 
@@ -12,7 +14,6 @@ const router = express.Router({ mergeParams: true });
 // skip the post method
 router.route('/').get(getRaceEntries).post(addRaceEntry);
 
-//router.route('/:id').post(addRaceEntry);
-router.route('/:email').get(getRaceEntriesByUser);
+router.route('/user').get(protect, getRaceEntriesByUser);
 
 module.exports = router;

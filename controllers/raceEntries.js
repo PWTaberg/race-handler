@@ -2,6 +2,8 @@ const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async.js');
 const RaceEntry = require('../models/RaceEntry');
 const Race = require('../models/Race');
+const User = require('../models/User');
+
 //const User = require('../models/User');
 
 // Get info on specific race
@@ -67,6 +69,7 @@ exports.getRaceEntries = asyncHandler(async (req, res, next) => {
 	const endIndex = page * limit;
 
 	let total = 0;
+	// FIX THIS: Check total here based on query
 	if (req.params.raceId) {
 		// If race-entries per race
 		total = await RaceEntry.countDocuments({ race: req.params.raceId });
@@ -74,6 +77,8 @@ exports.getRaceEntries = asyncHandler(async (req, res, next) => {
 		// If total race-entries
 		total = await RaceEntry.countDocuments();
 	}
+
+	console.log('total', total);
 
 	// Populate
 	if (req.query.populate) {
@@ -84,6 +89,9 @@ exports.getRaceEntries = asyncHandler(async (req, res, next) => {
 		});
 	}
 
+	// Get total here from query
+	//const altTotal = await query.countDocuments();
+	//console.log('alt-total', altTotal);
 	query = query.skip(startIndex).limit(limit);
 
 	// Execute call to Mongo
@@ -129,16 +137,12 @@ exports.getRaceEntries = asyncHandler(async (req, res, next) => {
 // -----------------
 exports.getRaceEntriesByUser = asyncHandler(async (req, res, next) => {
 	// Check that user has race-entries
-	const raceEntriesByUser = await RaceEntry.find({ email: req.params.email });
-	if (!raceEntriesByUser) {
-		return next(
-			new ErrorResponse(
-				`Resource not found for user with email ${req.params.email}`,
-				404
-			)
-		);
-	}
 
+	// Get user email
+	const user = await User.findById(req.user._id);
+	const { email } = user;
+
+	// get info from URI
 	let query = null;
 	let fields = null;
 	let sortBy = null;
@@ -158,19 +162,22 @@ exports.getRaceEntriesByUser = asyncHandler(async (req, res, next) => {
 	// Loop over removeFields and delete them from reqQuery
 	removeFields.forEach((param) => delete reqQuery[param]);
 
+	// add email as query parameter, search race-entries by email
+	reqQuery.email = email;
+
 	// Get string version of query object
 	let queryStr = JSON.stringify(reqQuery);
 
 	// Here we get the basic query for find - I think
-	query = RaceEntry.find({ email: req.params.email });
+	query = RaceEntry.find(JSON.parse(queryStr));
 
-	// add select fields to query
+	// If select is present - add to query
 	if (req.query.select) {
 		fields = req.query.select.split(',').join(' ');
 		query = query.select(fields);
 	}
 
-	//add sort to query
+	//Sort
 	if (req.query.sort) {
 		sortBy = req.query.sort.split(',').join(' ');
 		query = query.sort(sortBy);
@@ -178,53 +185,25 @@ exports.getRaceEntriesByUser = asyncHandler(async (req, res, next) => {
 		query = query.sort('name');
 	}
 
-	// Add pagination
-	const page = parseInt(req.query.page, 10) || 1;
-	const limit = parseInt(req.query.limit, 10) || 25;
-	const startIndex = (page - 1) * limit;
-	const endIndex = page * limit;
-	const total = await RaceEntry.countDocuments();
+	// Pagination not needed
 
-	// add populate
+	// Populate
 	if (req.query.populate) {
 		populateFields = req.query.populate.split(',').join(' ');
+
 		query = query.populate({
 			path: 'race',
 			select: populateFields,
 		});
 	}
 
-	query = query.skip(startIndex).limit(limit);
-
-	// Do the call to Mongo
+	// Execute call to Mongo
 	const raceEntries = await query;
 
-	// Pagination result
-	const pagination = {};
-
-	const pages = Math.ceil(total / limit);
-
-	if (endIndex < total) {
-		pagination.next = {
-			page: page + 1,
-			limit,
-		};
-	}
-
-	if (startIndex > 0) {
-		pagination.prev = {
-			page: page - 1,
-			limit,
-		};
-	}
-
-	// Add number of pages
-	pagination.pages = pages;
-
+	// Result
 	res.status(200).json({
 		success: true,
 		count: raceEntries.length,
-		pagination,
 		raceEntries,
 	});
 });
