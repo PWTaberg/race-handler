@@ -1,0 +1,213 @@
+body {
+    background: #333;
+    color: #fff;
+}
+
+.navbar {
+    border-bottom: #008ed6 3px solid;
+    opacity: 0.8;
+}
+
+#home-section {
+    background: url(../img/runners.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 700px;
+}
+
+#home-section .dark-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 700px;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+#home-section .home-inner {
+    padding-top: 100px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-variant: small-caps;
+}
+
+#home-section .card-form {
+    opacity: 0.8;
+}
+
+#home-section .fas,
+#create-section .fas {
+    color: #008ed6;
+    background: #fff;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#explore-section .fas,
+#share-section .fas {
+    background: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.run-pic img {
+    width: 100%;
+    height: 400px;
+    padding-top: 20px;
+}
+
+.carousel-item {
+    height: 450px;
+}
+
+.carousel-image-1 {
+    background: url('../img/runners2.jpg');
+    background-size: cover;
+}
+
+.carousel-image-2 {
+    background: url('../img/runner2.jpg');
+    background-size: cover;
+}
+
+.carousel-image-3 {
+    background: url('../img/runner3.jpg');
+    background-size: cover;
+}
+
+.modal-content {
+    background: rgba(80, 160, 240, 0.842);
+}
+
+.form-group {
+    color: black;
+}
+
+#admin-section .admin-inner {
+    padding-top: 100px;
+}
+
+.race-info {
+    color: rgb(100, 96, 96);
+}
+
+.race-text {
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    left: 0;
+}
+
+.race-text-color {
+    color: white;
+}
+
+.race-table {
+    color: rgb(100, 96, 96);
+}
+
+option:first {
+    color: #999;
+}
+
+.delete-item {
+    color: red;
+}
+
+.edit-item {
+    color: orange;
+}
+
+#startlist-search .startlist-inner {
+    padding-top: 80px;
+}
+
+.required-item {
+    color: red;
+}
+
+.fa-asterisk {
+    font-size: 7px;
+}
+
+.side-info {
+    opacity: 0.0;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 90px;
+    height: 34px;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ca2222;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    border-radius: 34px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #2ab934;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(55px);
+    -ms-transform: translateX(55px);
+    transform: translateX(55px);
+}
+
+.on {
+    display: none;
+}
+
+.on,
+.off {
+    color: white;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    font-size: 10px;
+    font-family: Verdana, sans-serif;
+}
+
+input:checked+.slider .on {
+    display: block;
+}
+
+input:checked+.slider .off {
+    display: none;
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
