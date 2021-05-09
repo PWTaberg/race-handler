@@ -29,7 +29,7 @@ const Navbar = ({ title }) => {
 				</Link>
 			</li>
 			<li>
-				<Link to='/race-list-admin' style={{ color: 'black' }}>
+				<Link to='/admin-race-preparation' style={{ color: 'black' }}>
 					RaceAdmin
 				</Link>
 			</li>

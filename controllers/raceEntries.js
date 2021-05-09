@@ -141,6 +141,7 @@ exports.getRaceEntriesByUser = asyncHandler(async (req, res, next) => {
 	// Get user email
 	const user = await User.findById(req.user._id);
 	const { email } = user;
+	console.log('Email: ', email);
 
 	// get info from URI
 	let query = null;

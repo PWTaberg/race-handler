@@ -1,15 +1,11 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
-//import Home from './components/pages/Home';
-import HomeScreen from './screens/HomeScreen';
+import Home from './components/pages/Home';
 import Shop from './components/pages/Shop';
-//import Races from './components/pages/Races';
-import AvailableRaceListScreen from './screens/AvailableRaceListScreen';
-
+import Races from './components/pages/Races';
 import AdminShopPreparation from './components/pages/AdminShopPreperation';
-//import AdminRacePreparation from './components/pages/AdminRacePreperation';
-import RaceListAdminScreen from './screens/RaceListAdminScreen';
+import AdminRacePreparation from './components/pages/AdminRacePreperation';
 
 import Sidebar from './components/layout/Sidebar';
 import Register from './components/auth/Register';
@@ -46,7 +42,7 @@ const App = () => {
 											<Route
 												exact
 												path='/'
-												component={HomeScreen}
+												component={Home}
 											/>
 											<Route
 												exact
@@ -56,9 +52,7 @@ const App = () => {
 											<Route
 												exact
 												path='/races'
-												component={
-													AvailableRaceListScreen
-												}
+												component={Races}
 											/>
 											<Route
 												exact
@@ -83,8 +77,8 @@ const App = () => {
 											/>
 											<Route
 												exact
-												path='/race-list-admin'
-												component={RaceListAdminScreen}
+												path='/admin-race-preparation'
+												component={AdminRacePreparation}
 											/>
 										</Switch>
 									</div>

@@ -7,7 +7,6 @@
 	--light-color: #f4f4f4;
 	--danger-color: #dc3545;
 	--success-color: #28a745;
-	--card-color: rgba(114, 110, 49, 0.6);
 }
 
 * {
@@ -31,6 +30,7 @@ html {
 	color: #333;
 	overflow: auto;
 }
+
 
 .blurBg {
 	text-align: center;
@@ -120,12 +120,6 @@ img {
 	border: #ccc 1px dotted;
 	border-radius: 4px;
 	margin: 0.7rem 0;
-}
-
-.bg-card {
-	background: var(--card-color);
-	border: #ccc solid 1px;
-	border-radius: 10px;
 }
 
 /* List */
@@ -392,7 +386,7 @@ table th {
 	justify-content: space-between;
 	align-items: center;
 	padding: 0.7rem 2rem;
-	z-index: 10;
+	z-index: 1;
 	width: 100%;
 	opacity: 0.9;
 }

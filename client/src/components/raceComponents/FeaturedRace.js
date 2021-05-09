@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import RaceHandlerContext from '../../context/raceHandler/raceHandlerContext';
 
-const FeaturedRaceItem = ({ race }) => {
+const FeaturedRace = ({ race }) => {
 	const raceHandlerContext = useContext(RaceHandlerContext);
 	const { setSelectedRace } = raceHandlerContext;
 	const { info1, info2, info3 } = race;
@@ -12,8 +12,8 @@ const FeaturedRaceItem = ({ race }) => {
 		setSelectedRace(race);
 	};
 	return (
-		<div className='card bg-light'>
-			<h1 className='text-dark text-center lead'>New3 Information!</h1>
+		<div className='card bg-card'>
+			<h1 className='text-dark text-center lead'>New Information!</h1>
 			<h1 className='text-primary text-center'>{info1}</h1>
 			<h2 className='text-primary'>{info2}</h2>
 			<h2 className='text-primary'>{info3}</h2>
@@ -38,8 +38,8 @@ const btnStyle = {
 	borderRadius: '8px',
 };
 
-FeaturedRaceItem.propTypes = {
+FeaturedRace.propTypes = {
 	race: PropTypes.object.isRequired,
 };
 
-export default FeaturedRaceItem;
+export default FeaturedRace;
