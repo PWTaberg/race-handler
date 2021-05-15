@@ -14,11 +14,14 @@ const Login = (props) => {
 	const { setAlert } = alertContext;
 	const { login, error, clearErrors, isAuthenticated } = authContext;
 
+	// in case of error, change in authorisation, history
 	useEffect(() => {
+		// If already logged in
 		if (isAuthenticated) {
 			props.history.push('/');
 		}
 
+		// Login failed
 		if (error === 'Invalid credentials') {
 			setAlert(error, 'danger');
 			clearErrors();
@@ -38,9 +41,11 @@ const Login = (props) => {
 
 	const onSubmit = (e) => {
 		e.preventDefault();
+		// Check that all fields are filled in
 		if (email === '' || password === '') {
 			setAlert('Fill in all fields', 'danger');
 		} else {
+			// Try to login
 			login({
 				email,
 				password,
@@ -55,7 +60,7 @@ const Login = (props) => {
 			</h1>
 			<form onSubmit={onSubmit}>
 				<div className='form-group'>
-					<label htmlFor='email' style={{ color: 'white' }}>
+					<label htmlFor='email' style={labelStyle}>
 						Email Address
 					</label>
 					<input
@@ -67,7 +72,7 @@ const Login = (props) => {
 					/>
 				</div>
 				<div className='form-group'>
-					<label htmlFor='password' style={{ color: 'white' }}>
+					<label htmlFor='password' style={labelStyle}>
 						Password
 					</label>
 					<input
@@ -78,7 +83,7 @@ const Login = (props) => {
 						required
 					/>
 				</div>
-				<p style={{ color: 'white' }}>
+				<p style={labelStyle}>
 					If you don't have an account,
 					<Link to='/register' style={linkStyle}>
 						<b> Register Here</b>
@@ -98,6 +103,10 @@ const linkStyle = {
 	color: 'blue',
 	backgroundColor: 'rgba(255, 255, 255, 0.7)',
 	borderRadius: '4px',
+};
+
+const labelStyle = {
+	color: 'white',
 };
 
 export default Login;

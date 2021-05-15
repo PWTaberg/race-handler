@@ -8,6 +8,7 @@ const AvailableRaceListScreen = () => {
 	const raceHandlerContext = useContext(RaceHandlerContext);
 	const { selectedRace } = raceHandlerContext;
 
+	// No races aavailable
 	if (selectedRace === null) {
 		return (
 			<div className='grid-2'>
@@ -19,6 +20,7 @@ const AvailableRaceListScreen = () => {
 		);
 	}
 
+	// Races are available
 	return (
 		<div className='grid-2'>
 			<div>

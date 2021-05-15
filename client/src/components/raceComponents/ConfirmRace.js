@@ -19,6 +19,8 @@ const ConfirmRace = () => {
 	//Antons key const Stripe_public = 'pk_test_7BSkiYCY4f3PLHOBdDybsy5t00qSd6Ck5m';
 	//let Stripe_public = 'pk_test_IkaBs3zE3qH12IO1ENSNkX7q00kgLs1P7x';
 
+	// Get stripekey from server
+	// keep it in state
 	useEffect(() => {
 		if (stripePublicKey === '') {
 			const getStripeKey = async () => {
@@ -48,6 +50,7 @@ const ConfirmRace = () => {
 	// local state for payment handling
 	const [showPaymentHandler, setShowPaymentHandler] = useState(false);
 
+	// Cancel registration to race if Cancel-key is clicked
 	const cancelRegistration = () => {
 		clearConfirmation();
 		clearSelectedRace();
@@ -55,6 +58,7 @@ const ConfirmRace = () => {
 		setShowPaymentHandler(false);
 	};
 
+	// Confirmation of race
 	const confirmRace = () => {
 		if (isAuthenticated) {
 			setRaceConfirmed();
@@ -104,14 +108,13 @@ const ConfirmRace = () => {
 		history.push('/');
 	};
 
-	// Stripe component in variabke...
+	// Stripe component in variable...
 	let paymentComponent;
 
 	if (showPaymentHandler === true) {
 		paymentComponent = (
 			<Fragment>
 				<StripeCheckout
-					//stripeKey={Stripe_public}
 					stripeKey={stripePublicKey}
 					token={makePayment}
 					name='Run For Joy'

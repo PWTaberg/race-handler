@@ -25,7 +25,7 @@ import LoginScreen from './screens/LoginScreen';
 
 import Alerts from './components/layout/Alerts';
 //import RaceCheckout from './components/checkout/RaceCheckout';
-import RaceCheckoutScreen from './screens/RaceCheckoutScreen';
+// NOT USED import RaceCheckoutScreen from './screens/RaceCheckoutScreen';
 
 import SidebarState from './context/sidebar/SidebarState';
 import RaceHandlerState from './context/raceHandler/RaceHandlerState';
@@ -38,6 +38,15 @@ import './App.css';
 if (localStorage.token) {
 	setAuthToken(localStorage.token);
 }
+
+/*
+	<Route
+		exact
+	    path='/race-checkout'
+		component={RaceCheckoutScreen}
+	/>
+
+*/
 
 const App = () => {
 	return (
@@ -79,11 +88,6 @@ const App = () => {
 												exact
 												path='/login'
 												component={LoginScreen}
-											/>
-											<Route
-												exact
-												path='/race-checkout'
-												component={RaceCheckoutScreen}
 											/>
 
 											<Route

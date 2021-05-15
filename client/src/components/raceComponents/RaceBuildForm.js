@@ -3,13 +3,10 @@ import RaceHandlerContext from '../../context/raceHandler/raceHandlerContext';
 
 const RaceBuildForm = () => {
 	const raceHandlerContext = useContext(RaceHandlerContext);
-	const {
-		addRace,
-		updateRace,
-		clearCurrentRace,
-		currentRace,
-	} = raceHandlerContext;
+	const { addRace, updateRace, clearCurrentRace, currentRace } =
+		raceHandlerContext;
 
+	// Update if racehandler, current race context is modified
 	useEffect(() => {
 		if (currentRace !== null) {
 			setRace(currentRace);
@@ -30,7 +27,7 @@ const RaceBuildForm = () => {
 		}
 	}, [raceHandlerContext, currentRace]);
 
-	// Local Race Initial state values
+	// Local Race Initial state values - for the form
 	const [race, setRace] = useState({
 		name: '',
 		distance: '',
@@ -45,6 +42,7 @@ const RaceBuildForm = () => {
 		show: 'no',
 	});
 
+	// Get parameters from race - destructuring
 	const {
 		name,
 		distance,
@@ -59,6 +57,7 @@ const RaceBuildForm = () => {
 		show,
 	} = race;
 
+	// Change of a form field value, update state
 	const onChange = (e) => {
 		setRace({ ...race, [e.target.name]: e.target.value });
 	};

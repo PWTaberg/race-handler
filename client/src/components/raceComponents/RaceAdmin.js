@@ -7,6 +7,7 @@ const RaceAdmin = ({ race }) => {
 	const { deleteRace, setCurrentRace, clearCurrentRace } = raceHandlerContext;
 
 	// convert time from ISO to local
+	// datetime is stored in ISO format in db
 
 	const localDate = new Date(race.date).toLocaleDateString();
 	const localTime = new Date(race.date).toLocaleTimeString().slice(0, 5);

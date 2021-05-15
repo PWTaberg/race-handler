@@ -7,6 +7,10 @@ const AvailableRaceList = () => {
 	const raceHandlerContext = useContext(RaceHandlerContext);
 	const { availableRaces, getRaces, loading } = raceHandlerContext;
 
+	// Add a const for limit, when we add pagination
+
+	// When first loaded
+	// Get all races from db
 	useEffect(() => {
 		const query =
 			'sort=-date&page=1&limit=20&raceStatus=open&simulated=false';
@@ -14,6 +18,7 @@ const AvailableRaceList = () => {
 		// eslint-disable-next-line
 	}, []);
 
+	// No races available:
 	if (availableRaces !== null && availableRaces.length === 0 && !loading) {
 		return (
 			<Fragment>
@@ -24,6 +29,7 @@ const AvailableRaceList = () => {
 		);
 	}
 
+	// Races avalible:
 	if (availableRaces !== null && !loading) {
 		return (
 			<Fragment>

@@ -11,6 +11,9 @@ const Home = () => {
 	const authContext = useContext(AuthContext);
 	const raceHandlerContext = useContext(RaceHandlerContext);
 
+	// When first time HomeScreen is displayed
+	// Try to get user info from loggid in user - id token is available
+	// Get races from db
 	useEffect(() => {
 		authContext.loadUser();
 		raceHandlerContext.getRaces();

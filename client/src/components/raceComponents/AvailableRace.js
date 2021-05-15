@@ -7,6 +7,7 @@ const AvailableRace = ({ race }) => {
 	const { setSelectedRace } = raceHandlerContext;
 
 	// convert time from ISO to local
+	// datetime is stored as ISO in db
 	const localDate = new Date(race.date).toLocaleDateString();
 	const localTime = new Date(race.date).toLocaleTimeString().slice(0, 5);
 	const localDateTime = `${localDate} ${localTime}`;

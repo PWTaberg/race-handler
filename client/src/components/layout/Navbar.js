@@ -7,8 +7,10 @@ import AuthContext from '../../context/auth/authContext';
 const Navbar = ({ title }) => {
 	const authContext = useContext(AuthContext);
 	const { isAuthenticated, logut, user } = authContext;
+
 	const sidebarContext = useContext(SidebarContext);
 	const { openSidebar, closeSidebar, sidebarClassName } = sidebarContext;
+
 	const onClick = () => {
 		if (sidebarClassName === 'sidebar close') {
 			openSidebar();
@@ -84,24 +86,14 @@ const Navbar = ({ title }) => {
 					Login
 				</Link>
 			</li>
-			<button
-				style={{
-					paddingRight: '10px',
-					paddingLeft: '10px',
-					borderRadius: '10px',
-				}}
-				onClick={onClick}
-			>
+			<button style={btnStyle} onClick={onClick}>
 				<i className='fas fa-bars'></i>
 			</button>
 		</Fragment>
 	);
 
-	// FIX - role -> isAdmin
 	let isAdmin = false;
-	/* if (user != null && user.role === 'admin') {
-		isAdmin = true;
-	}*/
+
 	if (user != null && user.isAdmin && user.isAdmin === true) {
 		isAdmin = true;
 	}
@@ -114,6 +106,12 @@ const Navbar = ({ title }) => {
 			<ul>{isAuthenticated ? authLinks : guestLinks}</ul>
 		</div>
 	);
+};
+
+const btnStyle = {
+	paddingRight: '10px',
+	paddingLeft: '10px',
+	borderRadius: '10px',
 };
 
 Navbar.propTypes = {

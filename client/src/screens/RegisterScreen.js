@@ -58,7 +58,7 @@ const Register = (props) => {
 			</h1>
 			<form onSubmit={onSubmit}>
 				<div className='form-group'>
-					<label htmlFor='name' style={{ color: 'white' }}>
+					<label htmlFor='name' style={labelStyle}>
 						Name
 					</label>
 					<input
@@ -70,7 +70,7 @@ const Register = (props) => {
 					/>
 				</div>
 				<div className='form-group'>
-					<label htmlFor='email' style={{ color: 'white' }}>
+					<label htmlFor='email' style={labelStyle}>
 						Email Address
 					</label>
 					<input
@@ -82,7 +82,7 @@ const Register = (props) => {
 					/>
 				</div>
 				<div className='form-group'>
-					<label htmlFor='password' style={{ color: 'white' }}>
+					<label htmlFor='password' style={labelStyle}>
 						Password
 					</label>
 					<input
@@ -96,7 +96,7 @@ const Register = (props) => {
 				</div>
 
 				<div className='form-group'>
-					<label htmlFor='password2' style={{ color: 'white' }}>
+					<label htmlFor='password2' style={labelStyle}>
 						Confirm Password
 					</label>
 					<input
@@ -116,6 +116,10 @@ const Register = (props) => {
 			</form>
 		</div>
 	);
+};
+
+const labelStyle = {
+	color: 'white',
 };
 
 export default Register;

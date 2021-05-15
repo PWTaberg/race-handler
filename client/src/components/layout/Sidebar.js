@@ -6,8 +6,12 @@ const Sidebar = () => {
 	const sidebarContext = useContext(SidebarContext);
 	const { sidebarClassName, closeSidebar } = sidebarContext;
 
+	// useRef - holds a reference to the sidebar element -I think
+	// so that we can use the same element further down in the code
 	const node = useRef();
 
+	// Click anywhere on the screen will cause sidebar to close
+	// remove event listener that was created before
 	const onClick = () => {
 		document.removeEventListener('click', handleClick);
 		closeSidebar();
@@ -17,6 +21,7 @@ const Sidebar = () => {
 	useEffect(() => {
 		if (sidebarClassName === 'sidebar') {
 			// If sidebar just opened, add listener for click
+			// So that we can close it when clicked anywhere on the screen
 			document.addEventListener('click', handleClick);
 		} else {
 			// if sidebar just closed remove listener
@@ -26,11 +31,12 @@ const Sidebar = () => {
 	}, [sidebarClassName]);
 
 	const handleClick = (e) => {
+		// Here we use node to check if the click was from inside the sidebar
 		if (node.current.contains(e.target)) {
 			// if click inside sidebar do nothing
 			return;
 		}
-		// If click outside sidebar, remove listener, close sidebar
+		// If click is from outside the sidebar, remove listener, close sidebar
 		document.removeEventListener('click', handleClick);
 		closeSidebar();
 	};

@@ -8,11 +8,13 @@ const RaceListAdmin = () => {
 	const raceHandlerContext = useContext(RaceHandlerContext);
 	const { availableRaces, getRaces, loading } = raceHandlerContext;
 
+	// get races first time this is displayed
 	useEffect(() => {
 		getRaces();
 		// eslint-disable-next-line
 	}, []);
 
+	// No available races
 	if (availableRaces !== null && availableRaces.length === 0 && !loading) {
 		return (
 			<Fragment>
@@ -22,6 +24,7 @@ const RaceListAdmin = () => {
 		);
 	}
 
+	// There are available races
 	if (availableRaces !== null && !loading) {
 		return (
 			<Fragment>

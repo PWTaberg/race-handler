@@ -502,6 +502,7 @@ table th {
 	z-index: 200;
 	right: -100%;
 	animation: slide-open 0.5s forwards;
+	border: 2px blue dotted;
 }
 
 .sidebar.close {
