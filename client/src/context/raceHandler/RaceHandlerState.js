@@ -20,10 +20,13 @@ import {
 
 const RaceHandlerState = (props) => {
 	const initialState = {
+		/* race on front page */
 		featuredRace: [],
 		availableRaces: [],
+		/* selected race for registration */
 		selectedRace: null,
 		raceArchive: [],
+		/* race that is currently in the edit form */
 		currentRace: null,
 		loading: true,
 		error: null,
@@ -81,8 +84,8 @@ const RaceHandlerState = (props) => {
 	};
 
 	const setCurrentRace = (race) => {
+		// Current race is the race being edited/modified
 		// Modify format from ISO to local time
-
 		const localDate = new Date(race.date).toLocaleDateString();
 		const localTime = new Date(race.date).toLocaleTimeString().slice(0, 5);
 		const localDateTime = `${localDate}T${localTime}`;
@@ -130,26 +133,28 @@ const RaceHandlerState = (props) => {
 		dispatch({ type: GET_FEATURED_RACE });
 	};
 
-	//Set Featured Races
+	//Set Selected Race - for registration to race
 	const setSelectedRace = (race) => {
 		dispatch({ type: SET_SELECTED_RACE, payload: race });
 	};
 
-	//Get Featured Races
+	//Clear selected race - after cancel registration
 	const clearSelectedRace = () => {
 		dispatch({ type: CLEAR_SELECTED_RACE });
 	};
 
-	const getRaces = async (query="sort=date&page=1&limit=20") => {
+	const getRaces = async (query = 'sort=date&page=1&limit=20') => {
+		/* possible query:
+			- sort='field' - ascendind / '-field'- descending
+			- select
+			- page
+			- limit 
+
+			exampel: select=name, date&sort=date,name&page=1&limit=3
+		*/
+
 		try {
 			const res = await axios.get(`/api/v1/race-list?${query}`);
-
-			/*
-			const res = await axios.get(
-				'/api/v1/race-list?select=name, date&sort=date,name&page=1&limit=3'
-			);
-
-			*/
 
 			dispatch({
 				type: GET_RACES,
@@ -163,7 +168,7 @@ const RaceHandlerState = (props) => {
 	// Clear Errors
 	const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
 
-	//
+	// Set Race as confirmed - used when registration is success
 	const setRaceConfirmed = () => dispatch({ type: CONFIRM_RACE });
 
 	// Clear Confirmation
@@ -177,13 +182,7 @@ const RaceHandlerState = (props) => {
 			runner,
 			raceId,
 		};
-		/*
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-    */
+
 		let config;
 		if (localStorage.token) {
 			config = {
@@ -195,11 +194,6 @@ const RaceHandlerState = (props) => {
 
 			try {
 				await axios.post('/api/v1/race-list/payment', body, config);
-
-				// Update Race with runner
-
-				//setAlert(`You are now registerd for ${name}`, 'success');
-				//history.push('/');
 			} catch (err) {
 				dispatch({
 					type: RACE_ERROR,
