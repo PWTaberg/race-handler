@@ -3,19 +3,29 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 //import Home from './components/pages/Home';
 import HomeScreen from './screens/HomeScreen';
-import Shop from './components/pages/Shop';
+
+//import Shop from './components/pages/Shop';
+import ShopScreen from './screens/ShopScreen';
+
 //import Races from './components/pages/Races';
 import AvailableRaceListScreen from './screens/AvailableRaceListScreen';
 
-import AdminShopPreparation from './components/pages/AdminShopPreperation';
+//import AdminShopPreparation from './components/pages/AdminShopPreperation';
+import ProductListAdminScreen from './screens/ProductListAdminScreen';
+
 //import AdminRacePreparation from './components/pages/AdminRacePreperation';
 import RaceListAdminScreen from './screens/RaceListAdminScreen';
 
 import Sidebar from './components/layout/Sidebar';
-import Register from './components/auth/Register';
-import Login from './components/auth/Login';
+//import Register from './components/auth/Register';
+import RegisterScreen from './screens/RegisterScreen';
+
+//import Login from './components/auth/Login';
+import LoginScreen from './screens/LoginScreen';
+
 import Alerts from './components/layout/Alerts';
-import RaceCheckout from './components/checkout/RaceCheckout';
+//import RaceCheckout from './components/checkout/RaceCheckout';
+import RaceCheckoutScreen from './screens/RaceCheckoutScreen';
 
 import SidebarState from './context/sidebar/SidebarState';
 import RaceHandlerState from './context/raceHandler/RaceHandlerState';
@@ -51,7 +61,7 @@ const App = () => {
 											<Route
 												exact
 												path='/shop'
-												component={Shop}
+												component={ShopScreen}
 											/>
 											<Route
 												exact
@@ -63,23 +73,25 @@ const App = () => {
 											<Route
 												exact
 												path='/register'
-												component={Register}
+												component={RegisterScreen}
 											/>
 											<Route
 												exact
 												path='/login'
-												component={Login}
+												component={LoginScreen}
 											/>
 											<Route
 												exact
 												path='/race-checkout'
-												component={RaceCheckout}
+												component={RaceCheckoutScreen}
 											/>
 
 											<Route
 												exact
-												path='/admin-shop-preparation'
-												component={AdminShopPreparation}
+												path='/product-list-admin'
+												component={
+													ProductListAdminScreen
+												}
 											/>
 											<Route
 												exact

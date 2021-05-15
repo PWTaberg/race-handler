@@ -24,7 +24,7 @@ const Navbar = ({ title }) => {
 	const adminLinks = (
 		<Fragment>
 			<li>
-				<Link to='/admin-shop-preparation' style={{ color: 'black' }}>
+				<Link to='/product-list-admin' style={{ color: 'black' }}>
 					ShopAdmin
 				</Link>
 			</li>
