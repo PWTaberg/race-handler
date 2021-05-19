@@ -1,18 +1,24 @@
 Mobile App
 ---------
 
-Min tanke är att mobile app ska sköta racet. Den ska kunna funka även om täckningen inte är berättar
-Anmälning mm gör man med web appen och hemsidan
+Min tanke är att mobile appen ska vara slim och enbart sköta racet. 
+Den ska kunna funka även om täckningen inte är bra. Den ska inte behöva uppdateras med nya funktioner allt för ofta.
+
+
+
+Anmälningar mm gör man med web appen och hemsidan
 
 Free:
 - Välja sträcka i km
+- Klockdisplay som visar tiden 14:44.03
 - start/stopp/reset
 - countdown till start
 - cooldown efter lopp
-- Karta som efter loppet visar sträcka och km punkter
+- Karta som efter loppet visar sträcka och km-punkter
 - Lista på mellantider och sluttid
-- Voice som berättar när man springer
+- Voice som berättar när man springer (engelska, svenska, spanska)
 - Kanske kunna spara 10 race 
+- Flash news - nya race
 
 Race:
 - Flash news - nya race
@@ -20,7 +26,7 @@ Race:
 - Go to race mode
 - Countdown till race startar
 - Samma funktioner som ovan
-- Skicka resultat vid varje km och vid mål. (Alla mellantide skickas varje gång)
+- Skicka resultat vid varje km och vid mål. (Alla mellantider skickas varje gång)
 - Resultat när man går i mål
 
 Race mot hare (senare):
@@ -59,20 +65,21 @@ Admin
 - skapa/ändra/ta bort Race
 - arkivera race
 
-Landing page
+Landing page (Typ wordpress eller något annat - som google gillar)
 - länk till web-app
 - länk till shop
 
+Vilda förslag:
 -  Bildspel med bilder från löpare i hela världen
 -  Race blog
 -  Chat with race Buddy
 -  Contact buddy
--  Challenge invite buddy
+-  Challenge invite a buddy
 
 shop
 - Tshirts
 - Socs
-- vad mellantider
+- vad mer ?
 
 Betalning:
 - member $20/år
