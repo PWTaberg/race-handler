@@ -27,7 +27,7 @@ Race:
 - Countdown till race startar
 - Samma funktioner som ovan
 - Skicka resultat vid varje km och vid mål. (Alla mellantider skickas varje gång)
-- Resultat när man går i mål
+- Resultat när man går i mål.
 
 Race mot hare (senare):
 - Läsa in lopp som skall vara hare
