@@ -33,6 +33,7 @@ Race mot hare (senare):
 - Läsa in lopp som skall vara hare
 - Samma som funktioner som ovan
 - Info varje km om hare och sig själv
+- osv
 
 Buddy Race (senare):
 - Som race men i listan på race finns både anmält race och buddy race
