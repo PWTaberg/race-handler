@@ -2,7 +2,8 @@ Mobile App
 ---------
 
 Min tanke är att mobile appen ska vara slim och enbart sköta racet. 
-Den ska kunna funka även om täckningen inte är bra. Den ska inte behöva uppdateras med nya funktioner allt för ofta.
+Den ska kunna funka även om täckningen inte är bra. 
+Med tiden kommer mobil appen att  få alla möjliga funktioner
 
 
 
@@ -19,10 +20,11 @@ Free:
 - Voice som berättar när man springer (engelska, svenska, spanska)
 - Kanske kunna spara 10 race 
 - Flash news - nya race
+- Kunna välja att anmäla sig till Race
 
 Race:
 - Flash news - nya race
-- Kanske kunna anmäla sig eller länk till anmälan
+- Kanske kunna anmäla sig 
 - Go to race mode
 - Countdown till race startar
 - Samma funktioner som ovan
@@ -51,16 +53,16 @@ Per race:
 - deltagarlista
 - startlista
 - resultatlista
-- detaljerad resultatlista
 
-Per deltagare:
-- race man är anmäld till
-- race man har kört
+Per deltagare (inloggad):
+- lista på race man är anmäld till
+- lista på race / resultat man har kört
+- se detaljerat resultat för en tävling
 - markera race som PB / hare 
 
 Buddy races(senare)
 - Sätta upp ett buddy race
-- challenge other
+- challenge others att vara med i buddy race
 
 Admin
 - skapa/ändra/ta bort Race
